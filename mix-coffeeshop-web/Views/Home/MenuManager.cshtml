@@ -1,0 +1,28 @@
+﻿@model IEnumerable<mix_coffeeshop_web.Models.Product>
+
+<div class="row">
+    <div class="col-md-10 col-sm-4">
+    <h3>จัดการเมนู</h3>
+    </div>
+    <div class="col-md-2 col-sm-4">
+        <h4><a asp-action="AddItem" class="btn btn-warning btn-block">+</a></h4>
+    </div>
+</div>
+
+@foreach(var product in Model)
+{
+    <div class="media well">
+        <div class="media-left">
+            <img src="@product.ThumbURL" class="media-object" width="200px">
+        </div>
+        <div class="media-body">
+            <div class="row">
+                <div class="col-sm-4"><h3>@product.Name</h3></div>
+                <div class="col-sm-2 col-sm-offset-6">
+                    <h3 class="text-right">@product.Price บาท</h3>
+                    <a asp-action="EditItem" asp-route-id="@product.Id" class="btn btn-warning btn-block">แก้ไข</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

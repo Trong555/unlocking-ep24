@@ -1,0 +1,36 @@
+﻿@model IEnumerable<mix_coffeeshop_web.Models.Order>
+
+<div class="row">
+    <div class="col-md-10 col-sm-4">
+        <h3>รายการสั่งซื้อ</h3>
+    </div>
+</div>
+@foreach(var order in Model)
+{
+    <div class="media well h3">
+        <div class="media-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    @foreach(var product in order.OrderedProducts)
+                    {
+                        <div class="row">
+                            <div class="col-sm-5"><img src="@product.ThumbURL" class="img-responsive" /></div>
+                            <div class="col-sm-7">@product.Name</div>
+                        </div>
+                    }
+                </div>
+                <div class="col-sm-4">
+                    @order.OrderDate
+                    <br />
+                    @order.ReferenceCode
+                </div>
+                <div class="col-sm-2 text-right">
+                    ฿ @order.OrderedProducts.Sum(op => op.Price)
+                    <form method="POST" asp-action="AcceptOrder" asp-route-id="@order.Id">
+                        <button type="submit" class="btn btn-warning btn-block">ยืนยันการจ่าย</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

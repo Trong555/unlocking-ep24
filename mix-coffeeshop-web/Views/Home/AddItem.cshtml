@@ -1,0 +1,38 @@
+@model mix_coffeeshop_web.Models.Product
+
+<form asp-action="AddItem" method="post">
+    <div class="well">
+        <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <img class="responsive" src="~/images/store.png" width="200px"/>
+            </div>
+            <div class="form-group">
+                <label>ลิ้งค์รูปสินค้า</label>
+                <input type="text" asp-for="ThumbURL" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+                <label>ชื่อสินค้า</label>
+                <input type="text" asp-for="Name" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
+                <label>ราคาสินค้า</label>
+                <input type="number" asp-for="Price" class="form-control" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label>รายละเอียด</label>
+                <textarea asp-for="Desc" class="form-control"></textarea>
+            </div>
+        </div></div>
+        <div class="row">
+            <div class="col-sm-offset-8 col-sm-4 row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-warning btn-block">ยืนยัน</a>
+                </div>
+                <div class="col-sm-6">
+                    <a asp-action="MenuManager" class="btn btn-default btn-block">ยกเลิก</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
