@@ -10,16 +10,30 @@
     <div class="media well h3">
         <div class="media-body">
             <div class="row">
-                <div class="col-sm-5">
-                    @foreach(var product in order.OrderedProducts)
-                    {
+                <div class="col-sm-4">
+                    @if(order.OrderedProducts.Count() > 1) {
                         <div class="row">
-                            <div class="col-sm-5"><img src="@product.ThumbURL" class="img-responsive" /></div>
-                            <div class="col-sm-7">@product.Name</div>
+                            @foreach(var product in order.OrderedProducts) {
+                                <div class="col-sm-6 text-center h4">
+                                    <img src="@product.ThumbURL" class="img-responsive" />
+                                    <br />
+                                    @product.Name
+                                </div>
+                            }
+                        </div>
+                    } else {
+                        <div class="row">
+                            @foreach(var product in order.OrderedProducts) {
+                                <div class="col-sm-12 text-center h4">
+                                    <img src="@product.ThumbURL" class="img-responsive" />
+                                    <br />
+                                    @product.Name
+                                </div>
+                            }
                         </div>
                     }
                 </div>
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <span class="glyphicon glyphicon-user"></span> @order.Username
                     <br />
                     <span class="glyphicon glyphicon-calendar"></span> @order.OrderDate
