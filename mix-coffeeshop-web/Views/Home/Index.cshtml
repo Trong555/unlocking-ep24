@@ -10,7 +10,7 @@
     <div class="media well h3">
         <div class="media-body">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     @foreach(var product in order.OrderedProducts)
                     {
                         <div class="row">
@@ -19,10 +19,12 @@
                         </div>
                     }
                 </div>
-                <div class="col-sm-4">
-                    @order.OrderDate
+                <div class="col-sm-5">
+                    <span class="glyphicon glyphicon-user"></span> @order.Username
                     <br />
-                    @order.ReferenceCode
+                    <span class="glyphicon glyphicon-calendar"></span> @order.OrderDate
+                    <br />
+                    <span class="glyphicon glyphicon-barcode"></span> @order.ReferenceCode
                 </div>
                 <div class="col-sm-2 text-right">
                     ฿ @order.OrderedProducts.Sum(op => op.Price)

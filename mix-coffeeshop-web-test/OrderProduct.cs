@@ -26,7 +26,7 @@ namespace mix_coffeeshop_web_test
             var repoProduct = mock.Create<IProductRepository>();
             var repoOrder = mock.Create<IOrderRepository>();
             var api = new OrderController(repoProduct.Object, repoOrder.Object);
-            repoOrder.Setup(it => it.CreateOrder(It.IsAny<Order>()));
+            repoOrder.Setup(it => it.Create(It.IsAny<Order>()));
 
             var response = api.OrderProduct(data);
 
@@ -54,7 +54,7 @@ namespace mix_coffeeshop_web_test
                 new Product { Id = 2, Stock = 5, HasStock = true },
                 new Product { Id = 3, Stock = 0, HasStock = true },
             });
-            repoOrder.Setup(it => it.CreateOrder(It.IsAny<Order>()));
+            repoOrder.Setup(it => it.Create(It.IsAny<Order>()));
 
             var response = api.OrderProduct(data);
 
@@ -83,7 +83,7 @@ namespace mix_coffeeshop_web_test
                 new Product { Id = 2, Stock = 5, HasStock = true },
                 new Product { Id = 3, Stock = 0, HasStock = true },
             });
-            repoOrder.Setup(it => it.CreateOrder(It.IsAny<Order>()));
+            repoOrder.Setup(it => it.Create(It.IsAny<Order>()));
 
             var response = api.OrderProduct(data);
 
@@ -114,7 +114,7 @@ namespace mix_coffeeshop_web_test
                 new Product { Id = 3, Stock = 6, HasStock = true },
                 new Product { Id = 4, Stock = 0, HasStock = false },
             });
-            repoOrder.Setup(it => it.CreateOrder(It.IsAny<Order>()));
+            repoOrder.Setup(it => it.Create(It.IsAny<Order>()));
 
             var response = api.OrderProduct(data);
 
@@ -128,7 +128,7 @@ namespace mix_coffeeshop_web_test
                 o.ReferenceCode.Should().NotBeNullOrEmpty();
                 return true;
             };
-            repoOrder.Verify(dac => dac.CreateOrder(It.Is<Order>(o => func(o))), Times.Once);
+            repoOrder.Verify(dac => dac.Create(It.Is<Order>(o => func(o))), Times.Once);
             repoOrder.VerifyNoOtherCalls();
             response.ReferenceCode.Should().NotBeNull();
             response.Message.Should().Be(expectedMessage);

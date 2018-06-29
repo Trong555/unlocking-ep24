@@ -12,7 +12,8 @@ namespace mix_coffeeshop_web.Repositories
     {
         Order Get(Expression<Func<Order, bool>> expression);
         IEnumerable<Order> List(Expression<Func<Order, bool>> expression);
-        void CreateOrder(Order order);
+        void Create(Order document);
+        void Update(Order document);
     }
 
     public class OrderRepository : IOrderRepository
@@ -41,9 +42,14 @@ namespace mix_coffeeshop_web.Repositories
             return Collection.Find(expression).ToList();
         }
 
-        public void CreateOrder(Order order)
+        public void Create(Order document)
         {
-            Collection.InsertOne(order);
+            Collection.InsertOne(document);
+        }
+
+        public void Update(Order document)
+        {
+            Collection.ReplaceOne(it => it.Id == document.Id,document);
         }
     }
 }

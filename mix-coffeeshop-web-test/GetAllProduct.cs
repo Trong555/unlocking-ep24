@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace mix_coffeeshop_web_test
 {
-    public class UnitTest1
+    public class GetAllProduct
     {
         [Fact(DisplayName = "Get products with correct data Then system return all products.")]
         public void GetAllProductSuccess()

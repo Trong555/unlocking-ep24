@@ -27,6 +27,36 @@ namespace mix_coffeeshop_web.Controllers
             return orderRepo.Get(o => o.ReferenceCode == referenceCode);
         }
 
+        [HttpGet("{username}")]
+        public IEnumerable<Order> ListByUsername(string username)
+        {
+            return orderRepo.List(o => o.Username == username);
+        }
+
+        [HttpGet]
+        public IEnumerable<Order> ListOrdering()
+        {
+            return orderRepo.List(o => !o.PaidDate.HasValue);
+        }
+
+        [HttpGet]
+        public IEnumerable<Order> ListHistory()
+        {
+            return orderRepo.List(o => o.PaidDate.HasValue);
+        }
+
+        [HttpPost("{id}")]
+        public void AcceptOrder(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) throw new NotImplementedException("ไม่พบรายการสั่งซื้อ");
+            
+            var order = orderRepo.Get(o => o.Id == id);
+            if (order == null) throw new NotImplementedException("ไม่พบรายการสั่งซื้อ");
+
+            order.PaidDate = DateTime.UtcNow;
+            orderRepo.Update(order);
+        }
+
         [HttpPost]
         public OrderProductResponse OrderProduct([FromBody]OrderProductRequest request)
         {
@@ -56,7 +86,7 @@ namespace mix_coffeeshop_web.Controllers
                 OrderDate = DateTime.UtcNow,
                 Username = request.Username,
             };
-            orderRepo.CreateOrder(order);
+            orderRepo.Create(order);
 
             return new OrderProductResponse { Message = "สั่งเมนูสำเร็จ กรุณาชำระเงินที่เค้าเตอร์", ReferenceCode = order.ReferenceCode, };
         }

@@ -22,18 +22,37 @@ namespace mix_coffeeshop_web.Controllers
 
         public IActionResult Index()
         {
-            var orders = orderRepo.List(o => !o.PaidDate.HasValue);
+            var api = new OrderController(productRepo, orderRepo);
+            var orders = api.ListOrdering();
             return View(orders);
+        }
+
+        [HttpPost("{id}")]
+        public IActionResult AcceptOrder(string id)
+        {
+            var api = new OrderController(productRepo, orderRepo);
+            try
+            {
+                api.AcceptOrder(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
 
         public IActionResult History()
         {
-            return View();
+            var api = new OrderController(productRepo, orderRepo);
+            var orders = api.ListHistory();
+            return View(orders);
         }
 
         public IActionResult MenuManager()
         {
-            var products = productRepo.GetAllProducts();
+            var api = new ProductController(productRepo);
+            var products = api.Get();
             return View(products);
         }
 
@@ -46,34 +65,24 @@ namespace mix_coffeeshop_web.Controllers
         [HttpPost]
         public IActionResult AddItem(Product data)
         {
-            var isDataCorrect = data != null && !string.IsNullOrEmpty(data.Name);
-            if (!isDataCorrect) return null;
-
-            var products = productRepo.GetAllProducts();
-            data.Id = products.Count() + 1;
-            productRepo.CreateNewProduct(data);
+            var api = new ProductController(productRepo);
+            api.CreateNewProduct(data);
             return RedirectToAction(nameof(MenuManager));
         }
 
         [HttpGet]
         public IActionResult EditItem(int id)
         {
-            var selectedProduct = productRepo.GetAllProducts().FirstOrDefault(it => it.Id == id);
+            var api = new ProductController(productRepo);
+            var selectedProduct = api.Get().FirstOrDefault(it => it.Id == id);
             return View(selectedProduct);
         }
 
         [HttpPost]
         public IActionResult EditItem(Product data)
         {
-            var products = productRepo.GetAllProducts();
-            var selectedProduct = products.FirstOrDefault(it => it.Id == data.Id);
-            if(selectedProduct == null) return null;
-
-            selectedProduct.Name = data.Name;
-            selectedProduct.Price = data.Price;
-            selectedProduct.Desc = data.Desc;
-            selectedProduct.ThumbURL = data.ThumbURL;
-            productRepo.UpdateProduct(data);
+            var api = new ProductController(productRepo);
+            var selectedProduct = api.UpdateProduct(data);
             return RedirectToAction(nameof(MenuManager));
         }
 
