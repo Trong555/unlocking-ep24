@@ -14,7 +14,7 @@ namespace mix_coffeeshop_web_test
 {
     public class ListOrderHistory
     {
-        [Fact(DisplayName = "ขอรายการสั่งซื้อจากรหัสอ้างอิง")]
+        [Fact(DisplayName = "ขอรายการสั่งซื้อที่ยืนยันรายการสั่งซื้อแล้ว")]
         public void ListOrderHistoryTest()
         {
             var mock = new MockRepository(MockBehavior.Default);

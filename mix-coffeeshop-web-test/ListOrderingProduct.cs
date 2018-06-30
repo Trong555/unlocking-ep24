@@ -14,7 +14,7 @@ namespace mix_coffeeshop_web_test
 {
     public class ListOrderingProduct
     {
-        [Fact(DisplayName = "ขอรายการสั่งซื้อจากรหัสอ้างอิง")]
+        [Fact(DisplayName = "ขอรายการสั่งซื้อที่ยังไม่ยืนยันรายการสั่งซื้อ")]
         public void ListOrderingProductTest()
         {
             var mock = new MockRepository(MockBehavior.Default);

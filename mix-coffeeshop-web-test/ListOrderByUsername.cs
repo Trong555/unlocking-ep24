@@ -24,7 +24,7 @@ namespace mix_coffeeshop_web_test
             new object[] { " ", new List<Order>{ }, },
             new object[] { "name05@gmail.com", new List<Order>{ }, },
         };
-        [Theory(DisplayName = "ขอรายการสั่งซื้อจากรหัสอ้างอิง")]
+        [Theory(DisplayName = "ขอรายการสั่งซื้อจาก username")]
         [MemberData(nameof(ListOrderByUsernameTestData))]
         public void ListOrderByUsernameTest(string referenceCode, IEnumerable<Order> expected)
         {
