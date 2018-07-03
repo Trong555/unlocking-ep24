@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>สรุปรายละเอียดการจ่ายเงิน</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  {{ errorMsg }}
+  <ion-grid text-center no-padding>
+    <ion-row class="top-section">
+      <ion-col offset-4 col-4>
+        <img src="../../assets/imgs/Logobanmor@3x.png" />
+      </ion-col>
+      <ion-col col-12>มิกซ์ เบเกอรี่</ion-col>
+      <ion-col col-12 class="grey">ยอดเงินที่จ่าย</ion-col>
+      <ion-col col-12 class="cost">
+        <b>฿ {{ CheckoutPrice }}</b>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 class="ref-code">รหัสอ้างอิง : {{ ReferenceCode }}</ion-col>
+      <ion-col col-12 class="grey-i">วันที่: 23/5/2561 เวลา: 12:30</ion-col>
+      <ion-col col-12 class="grey-i">
+        <div *ngFor="let p of OrderedProducts">{{ p }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

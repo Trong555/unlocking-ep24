@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button>
+        <img src="../../assets/imgs/Logobanmor@3x.png" style="width: 40px" />
+      </button>
+    </ion-buttons>
+    <ion-title>มิกซ์ เบเกอรี่ {{ showMe }}</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="GoHistory()">
+        <img src="../../assets/imgs/hamburgarmanu@3x.png" style="width: 30px" />
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  {{ errorMsg }}
+  <ion-grid style="padding-bottom: 50px">
+    <ion-row class="item-row">
+      <ion-col col-6 class="item" *ngFor="let p of Products">
+        <div class="item-header">{{ p.name }}</div>
+        <div class="item-checkbox">
+          <ion-checkbox [(ngModel)]="p.isChecked" (click)="SelectItem()"></ion-checkbox>
+        </div>
+        <img [src]="p.thumbURL" />
+        <div class="item-footer">฿ {{ p.price }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="page-footer">
+    <ion-row>
+      <ion-col class="page-footer-count">{{ MyCart.ItemCount }} รายการ</ion-col>
+      <ion-col class="page-footer-cost">฿ {{ MyCart.TotalAmount }}</ion-col>
+      <ion-col no-padding>
+        <button ion-button class="right page-footer-button" (click)="GoPayment()">สั่งซื้อ</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

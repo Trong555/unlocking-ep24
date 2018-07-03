@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>ประวัติการสั่งซื้อ</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  {{ errorMsg }}
+  <ion-grid>
+    <ion-row class="item-row" *ngFor="let o of Orders">
+      <ion-col col-5>
+        <ion-row *ngIf="o.orderedProducts.length > 1">
+          <ion-col col-6 class="item" *ngFor="let p of o.orderedProducts">
+            <img [src]="p.thumbURL" />
+            <div class="item-footer">{{ p.name }}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="o.orderedProducts.length <= 1">
+          <ion-col class="item" *ngFor="let p of o.orderedProducts">
+            <img [src]="p.thumbURL" />
+            <div class="item-footer">{{ p.name }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-7>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-9 class="item-header">
+              <div class="item-cost">฿ {{ SumPrice(o.orderedProducts) }}</div>
+              <div class="item-date"><ion-icon name="calendar"></ion-icon> วันที่: {{ o.orderDate }}</div>
+              <div class="item-date"><ion-icon name="barcode"></ion-icon> {{ o.referenceCode }}</div>
+            </ion-col>
+            <ion-col col-3 text-center>
+              <img src="../../assets/imgs/waiting@3x.png" *ngIf="!o.paidDate" />
+              <img src="../../assets/imgs/complete@3x.png" *ngIf="o.paidDate" />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

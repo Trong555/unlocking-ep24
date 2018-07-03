@@ -1,0 +1,59 @@
+
+page-home {
+    .item-row{
+        padding-bottom: 10px
+    }
+    .item{
+        background-color: black;
+        text-align: center;
+        border: 3px solid lightgrey;
+        padding: 0px;
+    }
+    
+    .item > .item-header{
+        padding: 5px;
+        background-color: white;
+    }
+    
+    .item > .item-checkbox{
+        position: absolute;
+        right: 0px;
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        padding: 8px;
+    }
+    
+    .item > .item-footer{
+        color: orange;
+    }
+    .page-footer {
+        height: 50px;
+        background-color: black;
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        padding: 0px;
+    }
+    .page-footer-count{
+        padding-top: 10px;
+        text-align: right;
+        color:white;
+    }
+    .page-footer-cost{
+        padding-top: 10px;
+        color:royalblue;
+    }
+    .page-footer-button{
+        background-color: orange;
+        margin: 0px;
+        border-radius: 0px;
+        height: 50px;
+        padding:10px;
+        width: 100%;
+        text-align: center;
+    }
+}

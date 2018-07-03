@@ -1,0 +1,30 @@
+page-history {
+    .item-row{
+        background-color: white;
+        padding: 0px;
+        margin-bottom: 10px;
+    }
+    .item-header{
+        font-size:smaller;
+        font-weight: bold;
+    }
+    .item-cost{
+        background-color: black;
+        color: orange;
+        text-align: center;
+        font-size: x-large;
+    }
+    .item-date{
+        font-size:x-small;
+        font-style: italic;
+    }
+    .item{
+        background-color: black;
+        text-align: center;
+        border: 1px solid black;
+        padding: 0px;
+    }
+    .item > .item-footer{
+        color: orange;
+    }
+}
